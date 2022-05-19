@@ -1,19 +1,19 @@
 
 /**
- * Write a description of class GUI here.
+ * Write a description of class Cards here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class GUI
+public class Cards
 {
     // instance variables - replace the example below with your own
     private int x;
 
     /**
-     * Constructor for objects of class GUI
+     * Constructor for objects of class Cards
      */
-    public GUI()
+    public Cards()
     {
         // initialise instance variables
         x = 0;
