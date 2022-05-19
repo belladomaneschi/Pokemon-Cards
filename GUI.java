@@ -1,4 +1,5 @@
-
+import java.util.HashMap;
+import ecs100.*;
 /**
  * Write a description of class GUI here.
  *
@@ -8,7 +9,8 @@
 public class GUI
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private Cards cards;      //declear books instance
+    private Card card;        //declear book instance
 
     /**
      * Constructor for objects of class GUI
@@ -16,18 +18,61 @@ public class GUI
     public GUI()
     {
         // initialise instance variables
-        x = 0;
+        cards = new Cards();
+        UI.initialise();
+        UI.setMouseListener(this::imageClick); 
+        UI.addButton("Print All", cards::printAll);
+        UI.addButton("Add a Contact", this::addCard);
+        UI.addButton("Find a contact", this::findCard);
+        UI.addButton("Quit", UI::quit);
+        UI.addButton("Clear All", this::clearEverything);
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Add a book to collection
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public void addCard(){
+       String name = UI.askString("Name: ");
+       double price = UI.askInt("Number: ");
+       
+                   
+       // add a book image for display in the GUI
+       String imgFileName = UIFileChooser.open("Choose Image File: ");
+            
+       // Increment the book ID count and add to hashmap
+       cards.setCardId();  // increment the id by 1
+       cards.addCard(name, price, imgFileName);
+    }
+    
+    public void clearEverything(){
+        UI.clearText();
+        UI.clearGraphics();
+    }
+    
+    public void findCard() {
+        String cardName = UI.askString(" Card Name: ");
+        if (cards.findCard(cardName.toLowerCase())){
+            UI.println("Found Card");
+            card = cards.getCard();
+            UI.println("Name: " + card.getName());
+            UI.println("Number: " + card.getPrc());
+            
+        }else {
+            UI.println("That Contact Does Not Exist! ");
+        }
+        
+        }
+    
+    public void imageClick(String action, double x, double y){
+        if (action.equals("clicked")){
+            if(card.cardClicked(x,y)){
+                clearEverything();
+            }else {
+                UI.println(x + " " + " " + y);
+                UI.println("Click on image to clear text");
+            
+            }  
+        }
+    
     }
 }
