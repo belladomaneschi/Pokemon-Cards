@@ -12,7 +12,7 @@ public class Card
     private String name;
     private double price;
     private String image;
-    static final String DEFAULT_IMAGE = "contact.png";
+    static final String DEFAULT_IMAGE = "Blank-Card.png";
     
     int locX = 100;
     int locY = 100;

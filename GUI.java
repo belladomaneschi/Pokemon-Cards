@@ -22,18 +22,18 @@ public class GUI
         UI.initialise();
         UI.setMouseListener(this::imageClick); 
         UI.addButton("Print All", cards::printAll);
-        UI.addButton("Add a Contact", this::addCard);
-        UI.addButton("Find a contact", this::findCard);
-        UI.addButton("Quit", UI::quit);
+        UI.addButton("Add a Card", this::addCard);
+        UI.addButton("Find a Card", this::findCard);
         UI.addButton("Clear All", this::clearEverything);
+        UI.addButton("Quit", UI::quit);
     }
 
     /**
      * Add a book to collection
      */
     public void addCard(){
-       String name = UI.askString("Name: ");
-       double price = UI.askInt("Number: ");
+       String name = UI.askString("Card Name: ");
+       double price = UI.askDouble("Price: ");
        
                    
        // add a book image for display in the GUI
@@ -50,7 +50,7 @@ public class GUI
     }
     
     public void findCard() {
-        String cardName = UI.askString(" Card Name: ");
+        String cardName = UI.askString("Card Name: ");
         if (cards.findCard(cardName.toLowerCase())){
             UI.println("Found Card");
             card = cards.getCard();

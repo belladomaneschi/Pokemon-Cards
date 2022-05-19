@@ -24,9 +24,9 @@ public class Cards
         library = new HashMap<Integer, Card>();
         
         //Creating Contacts
-        Card c1 = new Card(1, "The wicked king", 3.89);
-        Card c2 = new Card(2, "your mother", 3.42);
-        Card c3 = new Card(3, "your father", 29.38);
+        Card c1 = new Card(1, "Picachu", 3.89);
+        Card c2 = new Card(2, "Carizard", 3.42);
+        Card c3 = new Card(3, "Metapod", 29.38);
         
         library.put(1, c1);
         library.put(2, c2);
@@ -69,7 +69,7 @@ public class Cards
     for(int CardId : library.keySet()){
         UI.println(CardId + " Details:");
         UI.println(library.get(CardId).getName() + " "
-                    + library.get(CardId).getPrc());
+                    + " $" + library.get(CardId).getPrc());
                  
     }
     
