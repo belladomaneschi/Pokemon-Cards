@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import ecs100.*;
+import java.util.Map;
 /**
  * Write a description of class Card here.
  *
@@ -13,7 +14,8 @@ public class Cards
     // instance variables - replace the example below with your own
     private HashMap<Integer, Card> library;     // declaring Hashmap
     private int currCardId;
-    private Card currCard; 
+    private Card currCard;
+    private double totVal = 0.0;
     
     /**
      * Constructor for objects of class Card
@@ -66,12 +68,21 @@ public class Cards
     }
     
    public void printAll(){
+    UI.clearText(); 
+    totVal = 0; // if print button is hit more then once it does not effect to total price
+    UI.println("All Cards: \n");
     for(int CardId : library.keySet()){
         UI.println(CardId + " Details:");
         UI.println(library.get(CardId).getName() + " "
                     + " $" + library.get(CardId).getPrc());
+                    
+        totVal += library.get(CardId).getPrc();
                  
     }
+    UI.println("\n----------------------------");
+    
+    UI.println("\nThere are " + library.size() + " cards in the collection");
+    UI.println("With a Value of: $" + totVal);
     
     }
    

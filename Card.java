@@ -10,7 +10,7 @@ public class Card
     // instance variables - replace the example below with your own
     private int id;
     private String name;
-    private double price;
+    public double price;
     private String image;
     static final String DEFAULT_IMAGE = "Blank-Card.png";
     

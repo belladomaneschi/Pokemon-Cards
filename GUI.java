@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.regex.*;
 import ecs100.*;
 /**
  * Write a description of class GUI here.
@@ -52,16 +53,44 @@ public class GUI
     public void findCard() {
         String cardName = UI.askString("Card Name: ");
         if (cards.findCard(cardName.toLowerCase())){
+            UI.clearGraphics();
             UI.println("Found Card");
             card = cards.getCard();
             UI.println("Name: " + card.getName());
-            UI.println("Number: " + card.getPrc());
+            UI.println("Price: " + card.getPrc());
             
         }else {
             UI.println("That Contact Does Not Exist! ");
         }
         
         }
+        
+    public void errorCheckingName(String nm) {
+        if ((nm.length() > 1) && (nm.length() < 50)){
+              if (Pattern.matches("^[a-zA-Z. ]*$", nm)){
+                   return;
+                
+            }else{
+                UI.println("this is not a vaild name please reenter");
+                addCard();
+            }
+        }else{
+            UI.println("this is not a vaild name please reenter");
+            addCard();
+        }
+    }
+    
+    public void errorCheckingNum(String num) {
+
+              if (Pattern.matches("^(0-9){1,7}(?:.(0-9){1,2})?$", num)){
+                   return;
+                
+            }else{
+                UI.println("This is not a vaild price please reenter");
+                addCard();
+            }
+        }
+    
     
     public void imageClick(String action, double x, double y){
         if (action.equals("clicked")){
