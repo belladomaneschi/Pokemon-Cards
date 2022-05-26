@@ -51,6 +51,12 @@ public class Cards
        library.put(currCardId, new Card(currCardId, name, price, img));
     
     }
+    
+    public void removeCard(String name){
+         library.remove(name);
+         UI.println("Card had been removed");
+    
+    }
      
     public boolean findCard(String name) {
         for (int CardId : library.keySet()){

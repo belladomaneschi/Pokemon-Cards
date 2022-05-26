@@ -24,6 +24,7 @@ public class GUI
         UI.setMouseListener(this::imageClick); 
         UI.addButton("Print All", cards::printAll);
         UI.addButton("Add a Card", this::addCard);
+        UI.addButton("Remove a Card", this::removeCard);
         UI.addButton("Find a Card", this::findCard);
         UI.addButton("Clear All", this::clearEverything);
         UI.addButton("Quit", UI::quit);
@@ -34,8 +35,9 @@ public class GUI
      */
     public void addCard(){
        String name = UI.askString("Card Name: ");
+       errorCheckingName(name);
        double price = UI.askDouble("Price: ");
-       
+       errorCheckingNum(price);
                    
        // add a book image for display in the GUI
        String imgFileName = UIFileChooser.open("Choose Image File: ");
@@ -43,6 +45,11 @@ public class GUI
        // Increment the book ID count and add to hashmap
        cards.setCardId();  // increment the id by 1
        cards.addCard(name, price, imgFileName);
+    }
+    
+    public void removeCard(){
+        String name = UI.askString("What card would you like to remove: ");
+        cards.removeCard(name);
     }
     
     public void clearEverything(){
@@ -80,9 +87,9 @@ public class GUI
         }
     }
     
-    public void errorCheckingNum(String num) {
-
-              if (Pattern.matches("^(0-9){1,7}(?:.(0-9){1,2})?$", num)){
+    public void errorCheckingNum(double number) {
+            String num=String.valueOf(number); 
+              if (Pattern.matches("^[0-9]{1,7}(?:[.][0-9]{1,2})?$", num)){
                    return;
                 
             }else{
